@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="si" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Econ | ඔන්ලයින් ඉකොන් - A/L Economics Education Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Sinhala:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Noto Sans Sinhala"', 'Inter', 'sans-serif'] },
+          colors: { brand: { navy: '#0A192F', teal: '#14B8A6', gold: '#F59E0B', dark: '#020617' } }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+  <header class="sticky top-0 z-50 bg-brand-navy/95 backdrop-blur border-b border-slate-800 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" onclick="showSection('home')" class="flex items-center space-x-3 group">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-brand-teal to-brand-gold flex items-center justify-center shadow-lg">
+          <i class="fa-solid fa-graduation-cap text-brand-navy text-xl"></i>
+        </div>
+        <div>
+          <span id="nav-brand-title" class="text-xl font-bold tracking-wider text-white">ONLINE ECON</span>
+          <span class="block text-xs text-brand-teal font-medium">ඔන්ලයින් ඉකොන් • A/L Economics</span>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center space-x-8 font-medium">
+        <a href="#home" onclick="showSection('home')" class="hover:text-brand-teal transition">Home</a>
+        <a href="#about" onclick="showSection('about')" class="hover:text-brand-teal transition">අපි ගැන</a>
+        <a href="#modules" onclick="showSection('modules')" class="hover:text-brand-teal transition">පාඩම්</a>
+        <a href="#payments" onclick="showSection('payments')" class="hover:text-brand-teal transition">ගෙවීම්</a>
+        <a href="#contact" onclick="showSection('contact')" class="hover:text-brand-teal transition">Contact Us</a>
+      </nav>
+      <div class="flex items-center space-x-4" id="auth-nav-container"></div>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    <!-- HOME SECTION -->
+    <section id="section-home" class="page-section">
+      <div class="relative bg-gradient-to-br from-brand-navy via-slate-900 to-slate-800 text-white py-24 px-4 overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center relative z-10 space-y-6">
+          <span class="px-4 py-1.5 rounded-full bg-brand-teal/20 text-brand-teal text-sm font-semibold border border-brand-teal/30">ශ්‍රී ලංකාවේ අංක 01 ආර්ථික විද්‍යා අධ්‍යයන වේදිකාව</span>
+          <h1 id="hero-title-text" class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">ආර්ථික විද්‍යාව සරලව, පැහැදිලිව සහ විශ්වාසයෙන් ඉගෙන ගනිමු!</h1>
+          <p id="hero-subtitle-text" class="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto">උසස් පෙළ ආර්ථික විද්‍යාව සඳහා ඔබට අවශ්‍ය දැනුම, පාඩම් සහ අධ්‍යයන සම්පත් එකම තැනකින්.</p>
+          <div class="pt-4 flex flex-wrap justify-center gap-4">
+            <button onclick="showSection('modules')" class="px-8 py-4 rounded-xl bg-brand-teal hover:bg-teal-600 text-brand-navy font-bold text-lg shadow-lg transition">පාඩම් වෙත පිවිසෙන්න <i class="fa-solid fa-arrow-right ml-2"></i></button>
+            <button onclick="showSection('payments')" class="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-lg border border-white/20 transition">ගෙවීම් තොරතුරු සහ බෑන්ක් ස්ලිප් යොමු කිරීම</button>
+          </div>
+        </div>
+      </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-brand-navy">ප්‍රධාන අධ්‍යයන මොඩියුල (Featured Modules)</h2>
+          <p class="text-slate-600 mt-2">ගිණුමක් සකසා නොමැති වුවද ඔබට මෙම පාඩම් සහ ඒවායේ Thumbnails දැකගත හැක.</p>
+        </div>
+        <div id="featured-modules-container" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="section-about" class="page-section hidden py-16 px-4">
+      <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-sm border border-slate-200 p-8 sm:p-12 space-y-8">
+        <div class="text-center space-y-3"><h2 class="text-3xl font-extrabold text-brand-navy">අපි ගැන (About Us)</h2></div>
+        <p id="about-content-text" class="text-slate-700 leading-relaxed">Online Econ යනු ශ්‍රී ලංකාවේ උසස් පෙළ ආර්ථික විද්‍යා සිසුන් වෙනුවෙන්ම නිර්මාණය කරන ලද ප්‍රමුඛ පෙළේ අධ්‍යාපනික වේදිකාවකි.</p>
+      </div>
+    </section>
+
+    <!-- MODULES SECTION -->
+    <section id="section-modules" class="page-section hidden py-16 px-4">
+      <div class="max-w-7xl mx-auto space-y-8">
+        <div class="text-center space-y-2">
+          <h2 class="text-3xl font-extrabold text-brand-navy">එන්න අපි ඉගෙන ගමු</h2>
+          <p class="text-slate-600">සියලුම පාඩම් මාලා සහ Thumbnails මෙහි ප්‍රදර්ශනය වේ.</p>
+        </div>
+        <div id="all-modules-container" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+      </div>
+    </section>
+
+    <!-- PAYMENTS SECTION (Simplified for Registered Users) -->
+    <section id="section-payments" class="page-section hidden py-16 px-4">
+      <div class="max-w-3xl mx-auto bg-white rounded-3xl shadow-sm border border-slate-200 p-8 sm:p-12 space-y-8">
+        <div class="text-center space-y-2">
+          <span class="text-brand-teal font-semibold text-sm">ගෙවීම් සහ අනුමැතිය</span>
+          <h2 class="text-3xl font-extrabold text-brand-navy">ගෙවීම් පත්‍රිකා යොමු කිරීම</h2>
+          <p class="text-slate-600 text-sm">ඔබ දැනටමත් ලියාපදිංචි වී ඇති බැවින්, පාඩම තෝරා බෑන්ක් ස්ලිප්පත පමණක් උඩුගත කරන්න.</p>
+        </div>
+        <div class="bg-slate-900 text-white p-6 rounded-2xl space-y-3">
+          <h3 class="font-bold text-brand-teal">බැංකු ගිණුම් විස්තර</h3>
+          <div id="bank-details-display" class="text-sm text-slate-300 whitespace-pre-line">Bank: People's Bank | Acc No: 123-2-001-4-0000000</div>
+        </div>
+        <form id="payment-form" onsubmit="submitPayment(event)" class="space-y-6">
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">ගෙවීම් කළ යුතු මොඩියුලය (Select Module)</label>
+            <div id="payment-modules-checkboxes" class="space-y-2 border border-slate-200 p-4 rounded-xl max-h-48 overflow-y-auto"></div>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-1">ගෙවීම් පත්‍රිකාව (Bank Slip Image / PDF)</label>
+            <input type="file" id="bank-slip-file" accept="image/*,application/pdf" required class="w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-brand-teal/10 file:text-brand-teal">
+          </div>
+          <button type="submit" class="w-full py-4 rounded-xl bg-brand-navy text-white font-bold text-lg shadow-lg hover:bg-slate-800 transition">ගෙවීම් තොරතුරු ඉදිරිපත් කරන්න</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="section-contact" class="page-section hidden py-16 px-4">
+      <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-sm border border-slate-200 p-8 sm:p-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h2 class="text-3xl font-extrabold text-brand-navy">අප හා සම්බන්ධ වන්න</h2>
+          <p class="text-slate-600 mt-2" id="contact-email-display">chamikadahanayaka25@gmail.com</p>
+        </div>
+        <form onsubmit="submitContact(event)" class="space-y-4">
+          <input type="text" id="contact-name" placeholder="නම" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300">
+          <input type="email" id="contact-email" placeholder="ඊමේල් ලිපිනය" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300">
+          <textarea id="contact-msg" placeholder="පණිවිඩය" rows="4" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300"></textarea>
+          <button type="submit" class="w-full py-3 rounded-xl bg-brand-teal text-brand-navy font-bold">යොමු කරන්න</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- STUDENT DASHBOARD -->
+    <section id="section-student-dashboard" class="page-section hidden py-16 px-4">
+      <div class="max-w-7xl mx-auto space-y-8">
+        <div class="bg-brand-navy text-white p-8 rounded-3xl flex justify-between items-center">
+          <div><h2 id="student-welcome-name" class="text-3xl font-bold">සුභ දවසක්!</h2></div>
+          <button onclick="logout()" class="px-6 py-2.5 rounded-xl bg-red-500/20 text-red-200 font-semibold">ඉවත් වන්න</button>
+        </div>
+        <div id="student-modules-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
+      </div>
+    </section>
+
+    <!-- ADMIN DASHBOARD -->
+    <section id="section-admin-dashboard" class="page-section hidden py-12 px-4">
+      <div class="max-w-7xl mx-auto space-y-8">
+        <div class="bg-brand-navy text-white p-8 rounded-3xl flex justify-between items-center">
+          <h2 class="text-3xl font-bold">Admin Panel</h2>
+          <button onclick="logout()" class="px-6 py-2.5 rounded-xl bg-red-500/20 text-red-200 font-semibold">ඉවත් වන්න</button>
+        </div>
+        <div class="flex space-x-2 border-b border-slate-200 pb-2">
+          <button onclick="switchAdminTab('overview')" class="admin-tab-btn px-5 py-2.5 rounded-xl font-bold bg-brand-teal text-brand-navy">Overview</button>
+          <button onclick="switchAdminTab('payments')" class="admin-tab-btn px-5 py-2.5 rounded-xl font-semibold bg-white text-slate-600">Payment Slips</button>
+          <button onclick="switchAdminTab('modules')" class="admin-tab-btn px-5 py-2.5 rounded-xl font-semibold bg-white text-slate-600">Manage Modules</button>
+          <button onclick="switchAdminTab('students')" class="admin-tab-btn px-5 py-2.5 rounded-xl font-semibold bg-white text-slate-600">Students</button>
+        </div>
+        <div id="admin-tab-overview" class="admin-tab-content space-y-8">
+          <div id="admin-stats-grid" class="grid grid-cols-1 sm:grid-cols-4 gap-6"></div>
+        </div>
+        <div id="admin-tab-payments" class="admin-tab-content hidden space-y-6">
+          <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden"><table class="w-full text-left"><tbody id="admin-payments-table-body"></tbody></table></div>
+        </div>
+        <div id="admin-tab-modules" class="admin-tab-content hidden space-y-6">
+          <button onclick="openCreateModuleModal()" class="px-5 py-2.5 rounded-xl bg-brand-teal text-brand-navy font-bold">+ නව පාඩමක් සහ Thumbnail එකක් එක් කරන්න</button>
+          <div id="admin-modules-list" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+        </div>
+        <div id="admin-tab-students" class="admin-tab-content hidden space-y-6">
+          <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden"><table class="w-full text-left"><tbody id="admin-students-table-body"></tbody></table></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-brand-navy text-slate-400 py-12 border-t border-slate-800 text-center text-xs">
+    &copy; 2026 Online Econ. All rights reserved.
+  </footer>
+
+  <!-- AUTH MODAL (Sign In & Direct Registration with 25 Districts & A/L Years) -->
+  <div id="auth-modal" class="fixed inset-0 z-50 bg-brand-navy/80 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-8 relative space-y-6 max-h-[90vh] overflow-y-auto">
+      <button onclick="closeAuthModal()" class="absolute top-6 right-6 text-slate-400 text-xl"><i class="fa-solid fa-xmark"></i></button>
+      <h3 id="auth-modal-title" class="text-2xl font-bold text-brand-navy">ගිණුමට පිවිසෙන්න</h3>
+      
+      <!-- Login Form -->
+      <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">Username හෝ Email</label>
+          <input type="text" id="login-user" required class="w-full px-4 py-3 rounded-xl border border-slate-300">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">Password</label>
+          <input type="password" id="login-password" required class="w-full px-4 py-3 rounded-xl border border-slate-300">
+        </div>
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-navy text-white font-bold">පිවිසෙන්න</button>
+        <button type="button" onclick="switchAuthMode('register')" class="w-full text-sm text-brand-teal font-semibold">ගිණුමක් නැද්ද? ලියාපදිංචි වන්න (Sign Up)</button>
+      </form>
+
+      <!-- Registration Form (No OTP, 25 Districts, A/L Years 2026 A/L, 2027 A/L, 2028 A/L) -->
+      <form id="register-form" onsubmit="handleRegister(event)" class="space-y-4 hidden">
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">සම්පූර්ණ නම (Full Name)</label>
+          <input type="text" id="reg-name" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300">
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-1">Username</label>
+            <input type="text" id="reg-username" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300">
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-1">Email</label>
+            <input type="email" id="reg-email" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300">
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-1">දිස්ත්‍රික්කය (District)</label>
+            <select id="reg-district" class="w-full px-4 py-2.5 rounded-xl border border-slate-300">
+              <option value="කොළඹ">කොළඹ</option><option value="ගම්පහ" selected>ගම්පහ</option><option value="කළුතර">කළුතර</option><option value="මහනුවර">මහනුවර</option><option value="මාතලේ">මාතලේ</option><option value="නුවරඑළිය">නුවරඑළිය</option><option value="ගාල්ල">ගාල්ල</option><option value="මාතර">මාතර</option><option value="හම්බන්තොට">හම්බන්තොට</option><option value="යාපනය">යාපනය</option><option value="කිලිනොච්චිය">කිලිනොච්චිය</option><option value="මන්නාරම">මන්නාරම</option><option value="වවුනියාව">වවුනියාව</option><option value="මුලතිව්">මුලතිව්</option><option value="මඩකලපුව">මඩකලපුව</option><option value="අම්පාර">අම්පාර</option><option value="ත්‍රිකුණාමලය">ත්‍රිකුණාමලය</option><option value="කුරුණෑගල">කුරුණෑගල</option><option value="පුත්තලම">පුත්තලම</option><option value="අනුරාධපුර">අනුරාධපුර</option><option value="පොළොන්නරුව">පොළොන්නරුව</option><option value="බදුල්ල">බදුල්ල</option><option value="මොනරාගල">මොනරාගල</option><option value="රත්නපුර">රත්නපුර</option><option value="කෑගල්ල">කෑගල්ල</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-1">ආසන්නතම නගරය</label>
+            <input type="text" id="reg-city" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300">
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">උසස් පෙළ වර්ෂය (A/L Year)</label>
+          <select id="reg-al-year" class="w-full px-4 py-2.5 rounded-xl border border-slate-300">
+            <option value="2026 A/L" selected>2026 A/L</option>
+            <option value="2027 A/L">2027 A/L</option>
+            <option value="2028 A/L">2028 A/L</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">Password</label>
+          <input type="password" id="reg-password" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300">
+        </div>
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-teal text-brand-navy font-bold">ගිණුම සාදාගන්න</button>
+        <button type="button" onclick="switchAuthMode('login')" class="w-full text-sm text-brand-teal font-semibold">දැනටමත් ගිණුමක් තිබේද? පිවිසෙන්න</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- VIDEO PLAYER MODAL -->
+  <div id="video-modal" class="fixed inset-0 z-50 bg-brand-navy/90 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 rounded-3xl max-w-4xl w-full p-6 relative space-y-4">
+      <button onclick="closeVideoModal()" class="absolute top-4 right-4 text-white text-2xl"><i class="fa-solid fa-xmark"></i></button>
+      <div class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden">
+        <iframe id="video-iframe" class="w-full h-full" src="" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREATE MODULE MODAL WITH THUMBNAIL UPLOAD -->
+  <div id="create-module-modal" class="fixed inset-0 z-50 bg-brand-navy/80 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-8 relative space-y-6 max-h-[90vh] overflow-y-auto">
+      <button onclick="closeCreateModuleModal()" class="absolute top-6 right-6 text-slate-400 text-xl"><i class="fa-solid fa-xmark"></i></button>
+      <h3 class="text-2xl font-bold">නව පාඩම් මාලාවක් සහ Thumbnail එකක් එක් කරන්න</h3>
+      <form onsubmit="handleCreateModule(event)" class="space-y-4" enctype="multipart/form-data">
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">පාඩම් මාතෘකාව</label>
+          <input type="text" id="mod-title" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">විස්තරය</label>
+          <textarea id="mod-desc" class="w-full px-4 py-2.5 rounded-xl border border-slate-300"></textarea>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-1">මිළ (LKR)</label>
+            <input type="number" id="mod-price" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300">
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-1">A/L වර්ෂය</label>
+            <select id="mod-al-year" class="w-full px-4 py-2.5 rounded-xl border border-slate-300">
+              <option value="2026 A/L">2026 A/L</option>
+              <option value="2027 A/L">2027 A/L</option>
+              <option value="2028 A/L">2028 A/L</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">පාඩම් Thumbnail රූපය (Image)</label>
+          <input type="file" id="mod-thumbnail" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-brand-teal/10 file:text-brand-teal">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">YouTube URL</label>
+          <input type="text" id="mod-youtube" placeholder="https://www.youtube.com/watch?v=..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300">
+        </div>
+        <button type="submit" class="w-full py-3 rounded-xl bg-brand-teal text-brand-navy font-bold">පාඩම සුරකින්න</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let currentUser = null;
+    let allModules = [];
+    let siteSettings = {};
+
+    document.addEventListener('DOMContentLoaded', () => { fetchSettings(); fetchModules(); checkAuth(); });
+
+    function showSection(sectionId) {
+      document.querySelectorAll('.page-section').forEach(sec => sec.classList.add('hidden'));
+      document.getElementById('section-' + sectionId).classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+
+    async function fetchSettings() {
+      try {
+        const res = await fetch('/api/settings');
+        siteSettings = await res.json();
+        if(siteSettings.site_title) document.getElementById('nav-brand-title').innerText = siteSettings.site_title;
+        if(siteSettings.hero_title) document.getElementById('hero-title-text').innerText = siteSettings.hero_title;
+        if(siteSettings.hero_subtitle) document.getElementById('hero-subtitle-text').innerText = siteSettings.hero_subtitle;
+        if(siteSettings.about_text) document.getElementById('about-content-text').innerText = siteSettings.about_text;
+        if(siteSettings.bank_details) document.getElementById('bank-details-display').innerText = siteSettings.bank_details;
+      } catch (e) {}
+    }
+
+    async function fetchModules() {
+      try {
+        const res = await fetch('/api/modules');
+        allModules = await res.json();
+        renderFeaturedModules();
+        renderAllModules();
+        renderPaymentCheckboxes();
+      } catch (e) {}
+    }
+
+    async function checkAuth() {
+      try {
+        const res = await fetch('/api/auth/me');
+        if (res.ok) { currentUser = await res.json(); renderNavAuth(); }
+        else { currentUser = null; renderNavAuth(); }
+      } catch (e) { currentUser = null; renderNavAuth(); }
+    }
+
+    function renderNavAuth() {
+      const container = document.getElementById('auth-nav-container');
+      if (currentUser) {
+        const dashboardTarget = currentUser.role === 'admin' ? 'admin-dashboard' : 'student-dashboard';
+        const btnText = currentUser.role === 'admin' ? 'Admin Panel' : 'මගේ ගිණුම';
+        container.innerHTML = `<button onclick="showSection('${dashboardTarget}')" class="px-4 py-2 rounded-xl bg-brand-teal text-brand-navy font-bold text-sm">${btnText}</button>`;
+        if(currentUser.role === 'admin') loadAdminData();
+        else loadStudentDashboard();
+      } else {
+        container.innerHTML = `<button onclick="openAuthModal('login')" class="px-5 py-2 rounded-xl bg-brand-teal text-brand-navy font-bold text-sm">Sign In / Sign Up</button>`;
+      }
+    }
+
+    function renderFeaturedModules() {
+      document.getElementById('featured-modules-container').innerHTML = allModules.slice(0, 3).map(m => `
+        <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between">
+          <div class="h-48 bg-slate-100 overflow-hidden relative">
+            ${m.thumbnail ? `<img src="${m.thumbnail}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center text-slate-400 font-bold"><i class="fa-solid fa-book-open text-3xl"></i></div>`}
+          </div>
+          <div class="p-6 space-y-3">
+            <span class="text-xs font-semibold px-3 py-1 bg-brand-teal/10 text-brand-teal rounded-full">${m.al_year}</span>
+            <h3 class="text-xl font-bold text-brand-navy">${m.title}</h3>
+            <p class="text-slate-600 text-sm line-clamp-2">${m.description || ''}</p>
+          </div>
+          <div class="p-6 pt-0 flex items-center justify-between border-t border-slate-100 mt-4">
+            <span class="text-lg font-bold text-brand-teal">LKR ${m.price.toLocaleString()}</span>
+            <button onclick="showSection('modules')" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-sm font-semibold">විස්තර</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderAllModules() {
+      document.getElementById('all-modules-container').innerHTML = allModules.map(m => {
+        const isAuthorized = currentUser && (currentUser.role === 'admin' || (currentUser.authorized_modules && currentUser.authorized_modules.includes(m.id)));
+        return `
+          <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between">
+            <div class="h-48 bg-slate-100 overflow-hidden relative">
+              ${m.thumbnail ? `<img src="${m.thumbnail}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center text-slate-400 font-bold"><i class="fa-solid fa-book-open text-3xl"></i></div>`}
+            </div>
+            <div class="p-6 space-y-3">
+              <span class="text-xs font-semibold px-3 py-1 bg-brand-teal/10 text-brand-teal rounded-full">${m.al_year}</span>
+              <h3 class="text-xl font-bold text-brand-navy">${m.title}</h3>
+              <p class="text-slate-600 text-sm">${m.description || ''}</p>
+            </div>
+            <div class="bg-slate-50 border-t border-slate-100 p-6 flex items-center justify-between">
+              <span class="text-lg font-bold">LKR ${m.price.toLocaleString()}</span>
+              ${isAuthorized ? `<button onclick="openVideoPlayer('${m.youtube_url}', '${m.title}')" class="px-4 py-2 rounded-xl bg-brand-teal text-brand-navy font-bold text-sm"><i class="fa-solid fa-play mr-1"></i> නරඹන්න</button>` : `<button onclick="showSection('payments')" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-sm font-semibold"><i class="fa-solid fa-lock mr-1"></i> මිලදී ගන්න</button>`}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderPaymentCheckboxes() {
+      document.getElementById('payment-modules-checkboxes').innerHTML = allModules.map(m => `
+        <label class="flex items-center space-x-3 cursor-pointer p-2 hover:bg-slate-50 rounded-lg">
+          <input type="checkbox" name="payment_module" value="${m.id}" class="w-4 h-4 text-brand-teal">
+          <span class="text-sm font-medium">${m.title} - LKR ${m.price.toLocaleString()}</span>
+        </label>
+      `).join('');
+    }
+
+    function openAuthModal(mode) { document.getElementById('auth-modal').classList.remove('hidden'); switchAuthMode(mode); }
+    function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden'); }
+    function switchAuthMode(mode) {
+      document.getElementById('login-form').classList.add('hidden');
+      document.getElementById('register-form').classList.add('hidden');
+      if(mode === 'login') {
+        document.getElementById('login-form').classList.remove('hidden');
+        document.getElementById('auth-modal-title').innerText = 'ගිණුමට පිවිසෙන්න';
+      } else if(mode === 'register') {
+        document.getElementById('register-form').classList.remove('hidden');
+        document.getElementById('auth-modal-title').innerText = 'නව ගිණුමක් සාදාගන්න (Sign Up)';
+      }
+    }
+
+    async function handleLogin(e) {
+      e.preventDefault();
+      const res = await fetch('/api/auth/login', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ usernameOrEmail: document.getElementById('login-user').value, password: document.getElementById('login-password').value })
+      });
+      const data = await res.json();
+      if(res.ok) { closeAuthModal(); checkAuth(); } else alert(data.error);
+    }
+
+    async function handleRegister(e) {
+      e.preventDefault();
+      const payload = {
+        fullName: document.getElementById('reg-name').value,
+        username: document.getElementById('reg-username').value,
+        email: document.getElementById('reg-email').value,
+        district: document.getElementById('reg-district').value,
+        nearestCity: document.getElementById('reg-city').value,
+        alYear: document.getElementById('reg-al-year').value,
+        password: document.getElementById('reg-password').value
+      };
+
+      const res = await fetch('/api/auth/register', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if(res.ok) { alert(data.message); switchAuthMode('login'); } else alert(data.error);
+    }
+
+    async function logout() { await fetch('/api/auth/logout', { method: 'POST' }); currentUser = null; renderNavAuth(); showSection('home'); }
+
+    async function submitPayment(e) {
+      e.preventDefault();
+      if (!currentUser) { openAuthModal('login'); return; }
+      const checkboxes = document.querySelectorAll('input[name="payment_module"]:checked');
+      const selectedModuleIds = Array.from(checkboxes).map(cb => parseInt(cb.value));
+      if(selectedModuleIds.length === 0) { alert('පාඩමක් තෝරන්න.'); return; }
+
+      const formData = new FormData();
+      formData.append('module_ids', JSON.stringify(selectedModuleIds));
+      formData.append('bank_slip', document.getElementById('bank-slip-file').files[0]);
+
+      const res = await fetch('/api/payments/submit', { method: 'POST', body: formData });
+      const data = await res.json();
+      if(res.ok) { alert(data.message); e.target.reset(); showSection('home'); } else alert(data.error);
+    }
+
+    async function submitContact(e) {
+      e.preventDefault();
+      const res = await fetch('/api/contact', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ name: document.getElementById('contact-name').value, email: document.getElementById('contact-email').value, message: document.getElementById('contact-msg').value })
+      });
+      if(res.ok) { alert('යවන ලදී!'); e.target.reset(); }
+    }
+
+    function loadStudentDashboard() {
+      if(!currentUser) return;
+      document.getElementById('student-welcome-name').innerText = `සුභ දවසක්, ${currentUser.username || currentUser.email}!`;
+      const authIds = currentUser.authorized_modules || [];
+      const myMods = allModules.filter(m => authIds.includes(m.id));
+      document.getElementById('student-modules-grid').innerHTML = myMods.length === 0 ? '<div class="bg-white p-8 rounded-3xl col-span-2 text-center text-slate-500">තවමත් අවසර ලබා දී නැත. ගෙවීම් පත්‍රිකාවක් යොමු කරන්න.</div>' : myMods.map(m => `
+        <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-3">
+          <h4 class="font-bold text-lg">${m.title}</h4>
+          <button onclick="openVideoPlayer('${m.youtube_url}', '${m.title}')" class="w-full py-2.5 rounded-xl bg-brand-teal text-brand-navy font-bold text-sm">නරඹන්න</button>
+        </div>
+      `).join('');
+    }
+
+    function openVideoPlayer(url, title) {
+      if(!url) { alert('වීඩියෝවක් නැත.'); return; }
+      let embedUrl = url;
+      if (url.includes('watch?v=')) {
+        const videoId = url.split('watch?v=')[1].split('&')[0];
+        embedUrl = `https://www.youtube.com/embed/${videoId}`;
+      } else if (url.includes('youtu.be/')) {
+        const videoId = url.split('youtu.be/')[1].split('?')[0];
+        embedUrl = `https://www.youtube.com/embed/${videoId}`;
+      }
+      document.getElementById('video-iframe').src = embedUrl;
+      document.getElementById('video-modal').classList.remove('hidden');
+    }
+    function closeVideoModal() { document.getElementById('video-modal').classList.add('hidden'); document.getElementById('video-iframe').src = ''; }
+
+    async function loadAdminData() {
+      const stats = await (await fetch('/api/admin/stats')).json();
+      document.getElementById('admin-stats-grid').innerHTML = `
+        <div class="bg-white p-6 rounded-3xl border"><span>Total Students</span><h4 class="text-3xl font-bold">${stats.total_students}</h4></div>
+        <div class="bg-white p-6 rounded-3xl border"><span>Pending Slips</span><h4 class="text-3xl font-bold text-amber-500">${stats.pending_payments}</h4></div>
+        <div class="bg-white p-6 rounded-3xl border"><span>Approved</span><h4 class="text-3xl font-bold text-brand-teal">${stats.approved_payments}</h4></div>
+        <div class="bg-white p-6 rounded-3xl border"><span>Modules</span><h4 class="text-3xl font-bold">${stats.total_modules}</h4></div>
+      `;
+
+      const payments = await (await fetch('/api/admin/payments')).json();
+      document.getElementById('admin-payments-table-body').innerHTML = payments.map(p => `
+        <tr class="border-b"><td class="p-4 font-semibold">${p.username} (${p.full_name || 'Student'})<br><span class="text-xs text-slate-500">${p.district}</span></td><td class="p-4">IDs: ${p.module_ids}</td><td class="p-4"><a href="${p.slip_path}" target="_blank" class="text-brand-teal underline">View Slip</a></td><td class="p-4">${p.status}</td>
+        <td class="p-4">${p.status === 'Pending' ? `<button onclick="reviewPayment(${p.id}, 'Approved')" class="bg-teal-600 text-white px-3 py-1 rounded text-xs font-bold">Approve</button>` : ''}</td></tr>
+      `).join('');
+
+      const students = await (await fetch('/api/admin/students')).json();
+      document.getElementById('admin-students-table-body').innerHTML = students.map(s => `
+        <tr class="border-b"><td class="p-4">${s.username}</td><td class="p-4">${s.full_name || '-'}</td><td class="p-4">${s.district || '-'}</td><td class="p-4">${s.al_year || '-'}</td></tr>
+      `).join('');
+
+      document.getElementById('admin-modules-list').innerHTML = allModules.map(m => `
+        <div class="bg-white p-6 rounded-3xl border space-y-3"><h4 class="font-bold">${m.title}</h4><p class="text-sm">LKR ${m.price} | ${m.al_year}</p><button onclick="deleteModule(${m.id})" class="bg-red-100 text-red-600 px-3 py-1 rounded text-xs font-bold">Delete</button></div>
+      `).join('');
+    }
+
+    function switchAdminTab(tab) {
+      document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.add('hidden'));
+      document.getElementById('admin-tab-' + tab).classList.remove('hidden');
+    }
+
+    async function reviewPayment(id, status) {
+      await fetch(`/api/admin/payments/${id}/review`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ status }) });
+      loadAdminData();
+    }
+
+    function openCreateModuleModal() { document.getElementById('create-module-modal').classList.remove('hidden'); }
+    function closeCreateModuleModal() { document.getElementById('create-module-modal').classList.add('hidden'); }
+
+    async function handleCreateModule(e) {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append('title', document.getElementById('mod-title').value);
+      formData.append('description', document.getElementById('mod-desc').value);
+      formData.append('price', document.getElementById('mod-price').value);
+      formData.append('al_year', document.getElementById('mod-al-year').value);
+      formData.append('youtube_url', document.getElementById('mod-youtube').value);
+      const thumbFile = document.getElementById('mod-thumbnail').files[0];
+      if(thumbFile) formData.append('thumbnail', thumbFile);
+
+      const res = await fetch('/api/admin/modules', {
+        method: 'POST',
+        body: formData
+      });
+      if(res.ok) {
+        closeCreateModuleModal(); fetchModules(); loadAdminData(); alert('පාඩම සාර්ථකව එකතු කරන ලදී!');
+      } else {
+        alert('අසාර්ථක විය.');
+      }
+    }
+
+    async function deleteModule(id) {
+      if(!confirm('මකන්න අවශ්‍යද?')) return;
+      await fetch(`/api/admin/modules/${id}`, { method: 'DELETE' });
+      fetchModules(); loadAdminData();
+    }
+  </script>
+</body>
+</html>
